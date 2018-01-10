@@ -114,7 +114,6 @@ exit 0
 %systemd_postun_with_restart %{name}.service
 
 %files
-%defattr(-,root,root,-)
 %doc doc/* examples/*
 %doc CHANGELOG LICENSE README ROADMAP VERSION
 %dir %{haproxy_confdir}

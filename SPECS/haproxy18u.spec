@@ -157,6 +157,7 @@ exit 0
 * Wed Jan 10 2018 Carl George <carl@george.computer> - 1.8.3-1.ius
 - Port from Fedora to IUS
 - Don't try to use system-wide crypto-policies, not present in EL
+- Read options from /etc/sysconfig/haproxy
 
 * Fri Jan 05 2018 Ryan O'Hara <rohara@redhat.com> - 1.8.3-2
 - Remove haproxy-systemd-wrapper

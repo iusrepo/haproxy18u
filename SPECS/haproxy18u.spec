@@ -8,7 +8,7 @@
 
 Name:           haproxy18u
 Version:        1.8.3
-Release:        1.ius%{?dist}
+Release:        2.ius%{?dist}
 Summary:        HAProxy reverse proxy for high availability environments
 
 Group:          System Environment/Daemons
@@ -32,6 +32,7 @@ BuildRequires:  pcre-devel
 BuildRequires:  zlib-devel
 BuildRequires:  openssl-devel
 BuildRequires:  systemd
+BuildRequires:  systemd-devel
 
 Requires(pre):      shadow-utils
 %{?systemd_requires}
@@ -70,6 +71,7 @@ regparm_opts="USE_REGPARM=1"
     USE_PCRE=1 \
     USE_ZLIB=1 \
     USE_LUA=1 \
+    USE_SYSTEMD=1 \
 %if %{defined rhel}
     LUA_LIB_NAME=lua-5.3 \
     LUA_INC=%{_includedir}/lua-5.3 \
@@ -154,6 +156,9 @@ exit 0
 %attr(-,%{haproxy_user},%{haproxy_group}) %dir %{haproxy_home}
 
 %changelog
+* Thu Jan 18 2018 Carl George <carl@george.computer> - 1.8.3-2.ius
+- Enable sd_notify support
+
 * Wed Jan 10 2018 Carl George <carl@george.computer> - 1.8.3-1.ius
 - Port from Fedora to IUS
 - Don't try to use system-wide crypto-policies, not present in EL

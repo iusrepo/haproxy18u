@@ -125,7 +125,7 @@ done
 getent group %{haproxy_group} >/dev/null || \
     groupadd -r %{haproxy_group}
 getent passwd %{haproxy_user} >/dev/null || \
-    useradd -r -g %{haproxy_user} -d %{haproxy_home} \
+    useradd -r -g %{haproxy_group} -d %{haproxy_home} \
     -s /sbin/nologin -c "haproxy" %{haproxy_user}
 exit 0
 

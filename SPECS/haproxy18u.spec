@@ -7,8 +7,8 @@
 %global _hardened_build 1
 
 Name:           haproxy18u
-Version:        1.8.3
-Release:        2.ius%{?dist}
+Version:        1.8.4
+Release:        1.ius%{?dist}
 Summary:        HAProxy reverse proxy for high availability environments
 
 Group:          System Environment/Daemons
@@ -156,6 +156,9 @@ exit 0
 %attr(-,%{haproxy_user},%{haproxy_group}) %dir %{haproxy_home}
 
 %changelog
+* Thu Feb 08 2018 Ben Harper <ben.harper@rackspace.com> - 1.8.4-1.ius
+- Latest upstream
+
 * Thu Jan 18 2018 Carl George <carl@george.computer> - 1.8.3-2.ius
 - Enable sd_notify support
 

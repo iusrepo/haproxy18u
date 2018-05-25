@@ -73,6 +73,7 @@ regparm_opts="USE_REGPARM=1"
     USE_PCRE=1 \
     USE_ZLIB=1 \
     USE_LUA=1 \
+    USE_CRYPT_H=1 \
     USE_SYSTEMD=1 \
 %if %{defined rhel}
     LUA_LIB_NAME=lua-5.3 \
@@ -162,6 +163,7 @@ exit 0
 - Latest upstream
 - Add patch0 for CVE-2018-11469
 - Build halog and iprange with linker flags from redhat-rpm-config (Fedora)
+- Tell build to include <crypt.h> (Fedora)
 
 * Thu Apr 19 2018 Carl George <carl@george.computer> - 1.8.8-1.ius
 - Latest upstream

@@ -21,6 +21,8 @@ Source2:        haproxy.cfg
 Source3:        haproxy.logrotate
 Source4:        haproxy.sysconfig
 Source5:        halog.1
+# https://git.haproxy.org/?p=haproxy-1.8.git;a=commit;h=17514045e5d934dede62116216c1b016fe23dd06
+Patch0:         CVE-2018-11469.patch
 
 # src/hlua.c: "Requires Lua 5.3 or later."
 %if %{defined rhel}
@@ -56,7 +58,7 @@ availability environments. Indeed, it can:
    intercepted from the application
 
 %prep
-%setup -q -n haproxy-%{version}
+%autosetup -n haproxy-%{version} -p 1
 
 %build
 regparm_opts=
@@ -158,6 +160,7 @@ exit 0
 %changelog
 * Fri May 25 2018 Carl George <carl@george.computer> - 1.8.9-1.ius
 - Latest upstream
+- Add patch0 for CVE-2018-11469
 
 * Thu Apr 19 2018 Carl George <carl@george.computer> - 1.8.8-1.ius
 - Latest upstream

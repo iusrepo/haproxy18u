@@ -79,6 +79,7 @@ regparm_opts="USE_REGPARM=1"
     LUA_LIB_NAME=lua-5.3 \
     LUA_INC=%{_includedir}/lua-5.3 \
 %endif
+    USE_GETADDRINFO=1 \
     ${regparm_opts} \
     ADDINC="%{optflags}" \
     USE_LINUX_TPROXY=1 \
@@ -164,6 +165,7 @@ exit 0
 - Add patch0 for CVE-2018-11469
 - Build halog and iprange with linker flags from redhat-rpm-config (Fedora)
 - Tell build to include <crypt.h> (Fedora)
+- Build with USE_GETADDRINFO option (Fedora)
 
 * Thu Apr 19 2018 Carl George <carl@george.computer> - 1.8.8-1.ius
 - Latest upstream

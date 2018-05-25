@@ -84,11 +84,11 @@ regparm_opts="USE_REGPARM=1"
     ADDLIB="%{__global_ldflags}"
 
 pushd contrib/halog
-%{__make} ${halog} OPTIMIZE="%{optflags}"
+%{__make} ${halog} OPTIMIZE="%{optflags} %{__global_ldflags}"
 popd
 
 pushd contrib/iprange
-%{__make} iprange OPTIMIZE="%{optflags}"
+%{__make} iprange OPTIMIZE="%{optflags} %{__global_ldflags}"
 popd
 
 %install
@@ -161,6 +161,7 @@ exit 0
 * Fri May 25 2018 Carl George <carl@george.computer> - 1.8.9-1.ius
 - Latest upstream
 - Add patch0 for CVE-2018-11469
+- Build halog and iprange with linker flags from redhat-rpm-config (Fedora)
 
 * Thu Apr 19 2018 Carl George <carl@george.computer> - 1.8.8-1.ius
 - Latest upstream

@@ -7,7 +7,7 @@
 %global _hardened_build 1
 
 Name:           haproxy18u
-Version:        1.8.9
+Version:        1.8.10
 Release:        1.ius%{?dist}
 Summary:        HAProxy reverse proxy for high availability environments
 
@@ -21,8 +21,6 @@ Source2:        haproxy.cfg
 Source3:        haproxy.logrotate
 Source4:        haproxy.sysconfig
 Source5:        halog.1
-# https://git.haproxy.org/?p=haproxy-1.8.git;a=commit;h=17514045e5d934dede62116216c1b016fe23dd06
-Patch0:         CVE-2018-11469.patch
 
 # src/hlua.c: "Requires Lua 5.3 or later."
 %if %{defined rhel}
@@ -160,6 +158,9 @@ exit 0
 %attr(-,%{haproxy_user},%{haproxy_group}) %dir %{haproxy_home}
 
 %changelog
+* Fri Jun 22 2018 Carl George <carl@george.computer> - 1.8.10-1.ius
+- Latest upstream
+
 * Fri May 25 2018 Carl George <carl@george.computer> - 1.8.9-1.ius
 - Latest upstream
 - Add patch0 for CVE-2018-11469

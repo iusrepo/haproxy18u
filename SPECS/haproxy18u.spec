@@ -7,7 +7,7 @@
 %global _hardened_build 1
 
 Name:           haproxy18u
-Version:        1.8.12
+Version:        1.8.14
 Release:        1.ius%{?dist}
 Summary:        HAProxy reverse proxy for high availability environments
 
@@ -158,6 +158,9 @@ exit 0
 %attr(-,%{haproxy_user},%{haproxy_group}) %dir %{haproxy_home}
 
 %changelog
+* Thu Sep 20 2018 Carl George <carl@george.computer> - 1.8.14-1.ius
+- Latest upstream
+
 * Mon Jul 02 2018 Carl George <carl@george.computer> - 1.8.12-1.ius
 - Latest upstream
 

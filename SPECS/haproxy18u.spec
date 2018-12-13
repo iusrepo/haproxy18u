@@ -7,7 +7,7 @@
 %global _hardened_build 1
 
 Name:           haproxy18u
-Version:        1.8.14
+Version:        1.8.15
 Release:        1.ius%{?dist}
 Summary:        HAProxy reverse proxy for high availability environments
 
@@ -158,6 +158,9 @@ exit 0
 %{_mandir}/man1/*
 
 %changelog
+* Thu Dec 13 2018 Carl George <carl@george.computer> - 1.8.15-1.ius
+- Latest upstream
+
 * Thu Sep 20 2018 Carl George <carl@george.computer> - 1.8.14-1.ius
 - Latest upstream
 - Fix ownership of /var/lib/haproxy/ to avoid selinux DAC override errors (#1597076) (Fedora)

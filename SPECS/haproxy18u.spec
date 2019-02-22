@@ -64,7 +64,7 @@ regparm_opts=
 regparm_opts="USE_REGPARM=1"
 %endif
 
-%{__make} %{?_smp_mflags} \
+make %{?_smp_mflags} \
     CPU="generic" \
     TARGET="linux2628" \
     USE_OPENSSL=1 \
@@ -84,43 +84,43 @@ regparm_opts="USE_REGPARM=1"
     ADDLIB="%{__global_ldflags}"
 
 pushd contrib/halog
-%{__make} ${halog} OPTIMIZE="%{optflags} %{__global_ldflags}"
+make ${halog} OPTIMIZE="%{optflags} %{__global_ldflags}"
 popd
 
 pushd contrib/iprange
-%{__make} iprange OPTIMIZE="%{optflags} %{__global_ldflags}"
+make iprange OPTIMIZE="%{optflags} %{__global_ldflags}"
 popd
 
 %install
-%{__make} install-bin DESTDIR=%{buildroot} PREFIX=%{_prefix} TARGET="linux2628"
-%{__make} install-man DESTDIR=%{buildroot} PREFIX=%{_prefix}
+make install-bin DESTDIR=%{buildroot} PREFIX=%{_prefix} TARGET="linux2628"
+make install-man DESTDIR=%{buildroot} PREFIX=%{_prefix}
 
-%{__install} -p -D -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/haproxy.service
-%{__install} -p -D -m 0644 %{SOURCE2} %{buildroot}%{haproxy_confdir}/haproxy.cfg
-%{__install} -p -D -m 0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/logrotate.d/haproxy
-%{__install} -p -D -m 0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/sysconfig/haproxy
-%{__install} -p -D -m 0644 %{SOURCE5} %{buildroot}%{_mandir}/man1/halog.1
-%{__install} -d -m 0755 %{buildroot}%{haproxy_homedir}
-%{__install} -d -m 0755 %{buildroot}%{haproxy_datadir}
-%{__install} -d -m 0755 %{buildroot}%{_bindir}
-%{__install} -p -m 0755 ./contrib/halog/halog %{buildroot}%{_bindir}/halog
-%{__install} -p -m 0755 ./contrib/iprange/iprange %{buildroot}%{_bindir}/iprange
-%{__install} -p -m 0644 ./examples/errorfiles/* %{buildroot}%{haproxy_datadir}
+install -p -D -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/haproxy.service
+install -p -D -m 0644 %{SOURCE2} %{buildroot}%{haproxy_confdir}/haproxy.cfg
+install -p -D -m 0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/logrotate.d/haproxy
+install -p -D -m 0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/sysconfig/haproxy
+install -p -D -m 0644 %{SOURCE5} %{buildroot}%{_mandir}/man1/halog.1
+install -d -m 0755 %{buildroot}%{haproxy_homedir}
+install -d -m 0755 %{buildroot}%{haproxy_datadir}
+install -d -m 0755 %{buildroot}%{_bindir}
+install -p -m 0755 ./contrib/halog/halog %{buildroot}%{_bindir}/halog
+install -p -m 0755 ./contrib/iprange/iprange %{buildroot}%{_bindir}/iprange
+install -p -m 0644 ./examples/errorfiles/* %{buildroot}%{haproxy_datadir}
 
 for httpfile in $(find ./examples/errorfiles/ -type f)
 do
-    %{__install} -p -m 0644 $httpfile %{buildroot}%{haproxy_datadir}
+    install -p -m 0644 $httpfile %{buildroot}%{haproxy_datadir}
 done
 
-%{__rm} -rf ./examples/errorfiles/
+rm -rf ./examples/errorfiles/
 
-find ./examples/* -type f ! -name "*.cfg" -exec %{__rm} -f "{}" \;
+find ./examples/* -type f ! -name "*.cfg" -exec rm -f "{}" \;
 
 for textfile in $(find ./ -type f -name '*.txt')
 do
-    %{__mv} $textfile $textfile.old
+    mv $textfile $textfile.old
     iconv --from-code ISO8859-1 --to-code UTF-8 --output $textfile $textfile.old
-    %{__rm} -f $textfile.old
+    rm -f $textfile.old
 done
 
 %pre

@@ -7,11 +7,10 @@
 %global _hardened_build 1
 
 Name:           haproxy18u
-Version:        1.8.17
+Version:        1.8.19
 Release:        1.ius%{?dist}
 Summary:        HAProxy reverse proxy for high availability environments
 
-Group:          System Environment/Daemons
 License:        GPLv2+
 
 URL:            http://www.haproxy.org/
@@ -22,6 +21,7 @@ Source3:        haproxy.logrotate
 Source4:        haproxy.sysconfig
 Source5:        halog.1
 
+BuildRequires:  gcc
 # src/hlua.c: "Requires Lua 5.3 or later."
 %if %{defined rhel}
 BuildRequires:  lua53u-devel
@@ -31,8 +31,8 @@ BuildRequires:  lua-devel >= 5.3
 BuildRequires:  pcre-devel
 BuildRequires:  zlib-devel
 BuildRequires:  openssl-devel
-BuildRequires:  systemd
 BuildRequires:  systemd-devel
+BuildRequires:  systemd
 
 Requires(pre):      shadow-utils
 %{?systemd_requires}
@@ -73,6 +73,7 @@ make %{?_smp_mflags} \
     USE_LUA=1 \
     USE_CRYPT_H=1 \
     USE_SYSTEMD=1 \
+    USE_LINUX_TPROXY=1 \
 %if %{defined rhel}
     LUA_LIB_NAME=lua-5.3 \
     LUA_INC=%{_includedir}/lua-5.3 \
@@ -80,15 +81,14 @@ make %{?_smp_mflags} \
     USE_GETADDRINFO=1 \
     ${regparm_opts} \
     ADDINC="%{optflags}" \
-    USE_LINUX_TPROXY=1 \
-    ADDLIB="%{__global_ldflags}"
+    ADDLIB="%{build_ldflags}"
 
 pushd contrib/halog
-make ${halog} OPTIMIZE="%{optflags} %{__global_ldflags}"
+make ${halog} OPTIMIZE="%{optflags} %{build_ldflags}"
 popd
 
 pushd contrib/iprange
-make iprange OPTIMIZE="%{optflags} %{__global_ldflags}"
+make iprange OPTIMIZE="%{optflags} %{build_ldflags}"
 popd
 
 %install
@@ -158,6 +158,9 @@ exit 0
 %{_mandir}/man1/*
 
 %changelog
+* Fri Feb 22 2019 Carl George <carl@george.computer> - 1.8.19-1.ius
+- Latest upstream
+
 * Wed Jan 09 2019 Carl George <carl@george.computer> - 1.8.17-1.ius
 - Latest upstream
 

@@ -7,8 +7,8 @@
 %global _hardened_build 1
 
 Name:           haproxy18u
-Version:        1.8.19
-Release:        1.ius%{?dist}
+Version:        1.8.20
+Release:        1%{?dist}
 Summary:        HAProxy reverse proxy for high availability environments
 
 License:        GPLv2+
@@ -158,6 +158,9 @@ exit 0
 %{_mandir}/man1/*
 
 %changelog
+* Sat May 4 2019 evitalis <evitalis@users.noreply.github.com> - 1.8.20-1
+- Update to latest (1.8.20)
+
 * Fri Feb 22 2019 Carl George <carl@george.computer> - 1.8.19-1.ius
 - Latest upstream
 

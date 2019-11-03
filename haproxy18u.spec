@@ -7,7 +7,7 @@
 %global _hardened_build 1
 
 Name:           haproxy18u
-Version:        1.8.21
+Version:        1.8.22
 Release:        1%{?dist}
 Summary:        HAProxy reverse proxy for high availability environments
 
@@ -158,6 +158,9 @@ exit 0
 %{_mandir}/man1/*
 
 %changelog
+* Sun Nov 03 2019 Carl George <carl@george.computer> - 1.8.22-1
+- Latest upstream
+
 * Fri Sep 27 2019 Carl George <carl@george.computer> - 1.8.21-1
 - Latest upstream
 
